@@ -5,7 +5,6 @@ import { soundOff, soundOn } from '../lib/sound'
 import { WaterButton } from './WaterButton'
 
 const LINKS = [
-  { href: '#notices', label: "What's on" },
   { href: '#fleet', label: 'On the water' },
   { href: 'route:programs', label: 'Learn & build' },
   { href: 'route:calendar', label: "What's on" },

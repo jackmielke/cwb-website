@@ -1,5 +1,5 @@
 import { useEffect, useRef, type ReactNode } from 'react'
-import { LIVE } from '../lib/content'
+import { HOURS, LIVE } from '../lib/content'
 import { gsap } from '../lib/scroll'
 import { seattleNow } from '../lib/conditions'
 import { Link } from './Link'
@@ -103,8 +103,10 @@ export function Visit() {
                 <dd>Paid street parking and nearby garages. It fills up on summer weekends.</dd>
               </div>
               <div>
-                <dt className="eyebrow">By water</dt>
-                <dd>Paddle in. It's a living museum, after all.</dd>
+                <dt className="eyebrow">Call the dock</dt>
+                <dd>
+                  <a className="wlink" href={`tel:${HOURS.phone.replace(/\D/g, '')}`}>{HOURS.phone}</a>
+                </dd>
               </div>
               <div>
                 <dt className="eyebrow">Access</dt>
@@ -135,7 +137,7 @@ export function Visit() {
           <article className="pg-card pg-reveal">
             <p className="eyebrow">Spring to fall</p>
             <p className="display pg-card-t">Livery open</p>
-            <p>Rentals, Peapod rows and classes, mid-March through October, Wednesday to Sunday.</p>
+            <p>Rentals, Peapod rows and classes, mid-March through October. {HOURS.days}, {HOURS.open}. Last boat out {HOURS.lastBoat}.</p>
           </article>
           <article className="pg-card pg-reveal">
             <p className="eyebrow">Winter</p>
@@ -347,7 +349,10 @@ export function Calendar() {
         em="the water."
         sub="The fleet keeps a rhythm: free rows every week, a free sail every month, and a handful of nights a year that everyone in the wooden boat world turns up for."
       >
-        <WaterButton href={LIVE.calendar} variant="light" external>
+        <WaterButton href="#notices" variant="light">
+          This season's notices
+        </WaterButton>
+        <WaterButton href={LIVE.calendar} variant="light" external arrow={false}>
           Full calendar with dates
         </WaterButton>
       </PageHero>
