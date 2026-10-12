@@ -2,7 +2,7 @@
 // Sources: cwb.org, CWB 2022 annual report, IRS Form 990 (FY2024), 2026 rental rate sheet.
 
 export const LIVE = {
-  inquiry: 'https://ravishingradish.com/cwbinquiry',
+  inquiry: 'https://ravishingradish.com/cwb-inquiry',
   cwb: 'https://www.cwb.org',
   donate: 'https://www.cwb.org/give',
   membership: 'https://www.cwb.org/membership',
