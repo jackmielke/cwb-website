@@ -52,7 +52,11 @@ function tide(midway: () => void) {
 }
 
 export function goToPage(page: Page) {
-  if (page === currentPage()) return jumpTo(0)
+  if (page === currentPage()) {
+    if (window.scrollY < window.innerHeight * 1.6) lenis ? lenis.scrollTo(0, { duration: 1.2 }) : window.scrollTo({ top: 0, behavior: 'smooth' })
+    else tide(() => jumpTo(0))
+    return
+  }
   tide(() => {
     navigate(page)
     requestAnimationFrame(() =>

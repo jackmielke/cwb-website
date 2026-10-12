@@ -20,7 +20,49 @@ export const LIVE = {
   boatsForSale: 'https://www.cwb.org/boats-for-sale-1',
   charters: 'https://www.cwb.org/charters',
   facility: 'https://www.cwb.org/facility-rentals',
+  enews: 'https://www.cwb.org/enews',
+  landmark: 'https://www.cwb.org/cwb-landmarking',
+  film: 'https://www.bbc.com/storyworks/in-pursuit-of-wellness/shape-of-water',
+  filmTrailer: 'https://www.youtube.com/watch?v=UkOdHtuz7_Q',
+  fourCulture: 'https://www.4culture.org/',
+  instagram: 'https://www.instagram.com/centerforwoodenboats/',
+  facebook: 'https://www.facebook.com/centerforwoodenboats/',
+  youtube: 'https://www.youtube.com/user/centerforwoodenboats',
+  phone: 'tel:+12063822628',
 }
+
+export const HOURS = {
+  days: 'Wednesday to Sunday',
+  open: '11:30 AM to 7:00 PM',
+  lastBoat: '5:30 PM',
+  phone: '(206) 382-2628',
+}
+
+const C = (path: string) => `https://www.cwb.org/${path}`
+
+// Current bulletin from the cwb.org homepage. Date-bound items need a refresh before launch.
+export type Notice = { flag: string; desk: string; title: string; body: string; when: string; href: string }
+export const NOTICES: Notice[] = [
+  { flag: 'P', desk: 'Museum', title: 'PRIMA Jubilee: A Nautical Celebration', body: 'Seventeen marine artists from the West Coast and Hawaii, hung among the boats.', when: 'Through November 8', href: C('prima-jubilee') },
+  { flag: 'Y', desk: 'Youth', title: 'Fall youth sailing is open', body: 'School-year sailing registrations are live, and Learn to Race is under way.', when: 'Registering now', href: C('youth-school-year-sailing') },
+  { flag: 'N', desk: 'New classes', title: 'Sailing Skills Clinic', body: 'A new class for sailors who have their checkout and want more confidence at the helm.', when: 'New this season', href: C('sailing-skills-clinic') },
+  { flag: 'S', desk: 'New classes', title: 'Safe Powerboat Handling', body: 'A new class for anyone who drives a motor boat, from the basics to close-quarters handling.', when: 'New this season', href: C('safe-powerboat-handling') },
+  { flag: 'R', desk: 'On the water', title: 'W.O.O.D. Regatta results', body: 'Results and photos from the Norm Blanchard W.O.O.D. Regatta.', when: 'Just in', href: C('wood-regatta') },
+  { flag: 'G', desk: 'Gifts', title: 'Season passes are back', body: 'A summer of sailing in an envelope. The easiest gift on the lake.', when: 'Available now', href: C('boat-rentals') },
+  { flag: 'B', desk: 'Workshop', title: 'CLC boatbuilding, 2027', body: 'Build your own kayak or skiff in the shop. Next year\'s classes post in February.', when: 'February 2027', href: C('chesapeake-light-craft-boatbuilding-classes') },
+  { flag: 'H', desk: 'Members', title: 'Happy Hour 4 Good', body: 'Member evenings on the docks. Check the calendar for the next one.', when: 'Monthly', href: C('hh4g') },
+]
+
+// The full cwb.org site, so nothing on the current site is unreachable from the prototype.
+export const SITEMAP: { title: string; links: [string, string][] }[] = [
+  { title: 'Visit', links: [['Get on the water', C('onthewater')], ['Hours & location', C('hourslocations')], ['FAQ', C('faq')], ['Calendar', C('calendar')], ['Find parking', C('find-parking')]] },
+  { title: 'About', links: [['Mission, vision & values', C('mission')], ['2025 Strategic Plan', C('strat-plan')], ['Board of Trustees', C('board-of-trustees')], ['Landmarked campus', C('cwb-landmarking')], ['History', C('history')], ['Staff', C('staff')], ['Join our crew', C('careers')], ['Contact', C('contact')]] },
+  { title: 'Programs', links: [['Free programs', C('free-programs')], ['Adult sailing', C('adult-sailing')], ['CLC boatbuilding', C('chesapeake-light-craft-boatbuilding-classes')], ['Maritime first aid', C('maritime-first-aid')], ['Youth programs & camps', C('youth-programs-camps')], ['Young Mariners Initiative', C('ymi')], ['Boatwright Apprentice', C('boatwright-apprentice')]] },
+  { title: 'Boats', links: [['Rent a boat', C('boat-rentals')], ['Charter cruises', C('charters')], ['Pond boat rentals', C('pond-boat-rentals')], ['Boats for sale', C('boats-for-sale-1')]] },
+  { title: 'Exhibits', links: [['Current exhibits', C('current-exhibits')], ['PRIMA Jubilee', C('prima-jubilee')], ['Past exhibits', C('past-exhibits')], ['Kitten boatbuilding', C('kitten')], ['Blanchard restoration', C('bjk-restoration-project')], ['Preservation & documentation', C('preservation')]] },
+  { title: 'Events', links: [['Sunday Public Sail', C('public-sail')], ['W.O.O.D. Regatta', C('wood-regatta')], ['Facility rentals', C('facility-rentals')], ['Monthly newsletter', C('enews')], ['Community stories', C('our-community')], ['50th reunion photos', C('50th-anniversary-reunion-photo-gallery')]] },
+  { title: 'Support & join', links: [['Ways to give', C('give')], ['Membership', C('membership')], ['Sponsorships', C('sponsor')], ['Volunteer', C('volunteer')], ['Junior Instructors', C('junior-instructor')]] },
+]
 
 export type BoatKind = 'knockabout' | 'peapod' | 'catboat' | 'eltoro' | 'canoe' | 'skiff' | 'launch'
 
@@ -141,7 +183,7 @@ export const MILESTONES = [
   { year: '1968', title: 'A livery under the Aurora Bridge.', body: 'Dick and Colleen Wagner start renting wooden boats from their houseboat.' },
   { year: '1976', title: 'A living museum is founded.', body: 'The Wagners and their patrons found The Center for Wooden Boats: a museum whose collection you are meant to use.' },
   { year: '1983', title: 'Home on Waterway 4.', body: 'After a long shoreline permit fight, the campus opens on a former industrial waterway at the south end of the lake.' },
-  { year: '1989', title: 'The Boathouse is dedicated.', body: 'A floating building joins the boat shop, pavilion and oar house. Today they are up for Seattle landmark status.' },
+  { year: '1989', title: 'The Boathouse is dedicated.', body: 'A floating building joins the boat shop, pavilion and oar house. Today the floating campus is a designated Seattle Landmark.' },
   { year: '2008', title: 'Classrooms that float.', body: 'Floating classrooms and a carving shed give the craft room to grow.' },
   { year: '2019', title: 'The Wagner Education Center.', body: 'A $6.5M building by Tom Kundig opens on Lake Union Park, with boats hung overhead and doors that slide open to the water.' },
   { year: '2024', title: 'Bigger than ever, still free.', body: 'Over $2.2M in revenue, 57% of it from people who simply believe in the place. Admission stays free.' },

@@ -12,8 +12,11 @@ import { FiftySeasons } from './components/FiftySeasons'
 import { FreeDoor } from './components/FreeDoor'
 import { Spaces } from './components/Spaces'
 import { Keep } from './components/Keep'
+import { Notices } from './components/Notices'
+import { Landmark } from './components/Landmark'
 import { Footer } from './components/Footer'
 import { Donate } from './components/Donate'
+import { About, Calendar, Programs, Visit } from './components/Pages'
 import { currentPage, onRoute, type Page } from './lib/route'
 
 export default function App() {
@@ -24,7 +27,8 @@ export default function App() {
   useEffect(() => onRoute(setPage), [])
 
   useEffect(() => {
-    document.title = page === 'donate' ? 'Give · The Center for Wooden Boats' : 'The Center for Wooden Boats · Take it out on the water'
+    const names: Record<Page, string> = { home: '', visit: 'Visit', programs: 'Learn and build', calendar: "What's on", about: 'About', donate: 'Give' }
+    document.title = page === 'home' ? 'The Center for Wooden Boats · Take it out on the water' : `${names[page]} · The Center for Wooden Boats`
   }, [page])
 
   useEffect(() => {
@@ -44,14 +48,24 @@ export default function App() {
       <Nav />
       {page === 'donate' ? (
         <Donate />
+      ) : page === 'visit' ? (
+        <Visit />
+      ) : page === 'programs' ? (
+        <Programs />
+      ) : page === 'calendar' ? (
+        <Calendar />
+      ) : page === 'about' ? (
+        <About />
       ) : (
         <main>
           <Hero started={started} />
           <Manifesto />
+          <Notices />
           <Fleet />
           <ThreeWays />
           <Conditions />
           <FiftySeasons />
+          <Landmark />
           <FreeDoor />
           <Spaces />
           <Keep />

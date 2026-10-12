@@ -1,6 +1,6 @@
 import type { ReactNode, MouseEvent } from 'react'
 import { goToPage, scrollToTarget } from '../lib/scroll'
-import type { Page } from '../lib/route'
+import { hrefFor, type Page } from '../lib/route'
 
 type Props = {
   href: string
@@ -26,7 +26,7 @@ export function WaterButton({ href, children, variant = 'light', small, arrow = 
   }
   return (
     <a
-      href={route ? (route === 'donate' ? 'donate' : './') : href}
+      href={route ? hrefFor(route) : href}
       onClick={onClick}
       className={`wbtn wbtn--${variant} ${small ? 'wbtn--small' : ''}`}
       {...(external ? { target: '_blank', rel: 'noreferrer' } : {})}

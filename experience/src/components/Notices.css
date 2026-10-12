@@ -1,0 +1,206 @@
+.notices .section-head h2 em {
+  color: var(--rust);
+}
+.nt-grid {
+  display: grid;
+  grid-template-columns: minmax(280px, 0.8fr) 2fr;
+  gap: clamp(28px, 4vw, 64px);
+  align-items: start;
+}
+.nt-board {
+  position: sticky;
+  top: 110px;
+  background: var(--lake);
+  color: var(--paper);
+  padding: 32px 30px 30px;
+  border-radius: 4px;
+  box-shadow: inset 0 0 0 1px rgba(201, 161, 91, 0.35), inset 0 0 0 7px var(--lake), inset 0 0 0 8px rgba(201, 161, 91, 0.25);
+}
+.nt-board-h {
+  color: var(--brass);
+  margin: 0 0 18px;
+}
+.nt-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-size: 22px;
+  line-height: 1.2;
+  margin: 0 0 22px;
+}
+.nt-status i {
+  flex: none;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #8a8f8f;
+}
+.nt-status.is-open i {
+  background: #7fc6a4;
+  box-shadow: 0 0 0 0 rgba(127, 198, 164, 0.6);
+  animation: nt-pulse 2.4s infinite;
+}
+@keyframes nt-pulse {
+  70% { box-shadow: 0 0 0 10px rgba(127, 198, 164, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(127, 198, 164, 0); }
+}
+.nt-board dl {
+  margin: 0;
+  display: grid;
+  border-top: 1px solid var(--line-light);
+}
+.nt-board dl div {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 11px 0;
+  border-bottom: 1px solid var(--line-light);
+  font-size: 15px;
+}
+.nt-board dt {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  padding-top: 3px;
+}
+.nt-board dd {
+  margin: 0;
+  text-align: right;
+}
+.nt-addr {
+  margin: 22px 0 18px;
+  font-size: 15px;
+  opacity: 0.85;
+}
+.nt-board-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.nt-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  border-top: 1px solid var(--line);
+}
+.nt-row a {
+  position: relative;
+  display: grid;
+  grid-template-columns: 44px 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  column-gap: 16px;
+  height: 100%;
+  padding: 24px 22px 24px 0;
+  border-bottom: 1px solid var(--line);
+}
+.nt-row:nth-child(odd) a {
+  border-right: 1px solid var(--line);
+}
+.nt-row:nth-child(even) a {
+  padding-left: 22px;
+}
+.nt-mast {
+  grid-row: 1 / -1;
+  position: relative;
+  width: 2px;
+  margin-left: 4px;
+  background: var(--ink);
+  opacity: 0.55;
+  height: 100%;
+  min-height: 90px;
+}
+.nt-mast::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -2px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--ink);
+}
+/* the flag sits low on its halyard and runs up the mast on hover */
+.nt-flag {
+  position: absolute;
+  left: 2px;
+  bottom: 0;
+  width: 30px;
+  height: 20px;
+  transform-origin: left center;
+  transition: bottom 0.9s var(--ease-out), transform 0.9s var(--ease-out);
+  transform: scaleX(0.55) skewY(8deg);
+  filter: saturate(0.6);
+}
+.nt-row a:hover .nt-flag,
+.nt-row a:focus-visible .nt-flag {
+  bottom: calc(100% - 20px);
+  transform: none;
+  filter: none;
+  animation: nt-flutter 1.6s 0.8s ease-in-out infinite;
+}
+@keyframes nt-flutter {
+  0%, 100% { transform: skewY(0deg) scaleX(1); }
+  30% { transform: skewY(-3deg) scaleX(0.96); }
+  60% { transform: skewY(2deg) scaleX(1); }
+}
+.nt-row a:hover .nt-mast {
+  opacity: 1;
+}
+.nt-desk {
+  color: var(--rust);
+  font-size: 10.5px;
+}
+.nt-title {
+  font-family: var(--serif);
+  font-size: clamp(21px, 1.9vw, 26px);
+  line-height: 1.15;
+  margin: 10px 0 8px;
+  font-variation-settings: 'SOFT' 60;
+  transition: color 0.4s;
+}
+.nt-row a:hover .nt-title {
+  color: var(--lake-3);
+}
+.nt-body {
+  color: var(--ink-soft);
+  font-size: 15px;
+  margin-bottom: 14px;
+}
+.nt-when {
+  font-size: 10.5px;
+  color: var(--ink-soft);
+}
+@media (max-width: 1000px) {
+  .nt-grid {
+    grid-template-columns: 1fr;
+  }
+  .nt-board {
+    position: relative;
+    top: 0;
+  }
+}
+@media (max-width: 640px) {
+  .nt-list {
+    grid-template-columns: 1fr;
+  }
+  .nt-row:nth-child(odd) a {
+    border-right: 0;
+  }
+  .nt-row:nth-child(even) a {
+    padding-left: 0;
+  }
+}
+@media (hover: none) {
+  .nt-flag {
+    bottom: calc(100% - 20px);
+    transform: none;
+    filter: none;
+  }
+}

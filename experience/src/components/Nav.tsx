@@ -1,13 +1,16 @@
 import { useEffect, useState } from 'react'
 import { goToPage, ScrollTrigger, scrollToTarget } from '../lib/scroll'
+import { hrefFor, type Page } from '../lib/route'
 import { soundOff, soundOn } from '../lib/sound'
 import { WaterButton } from './WaterButton'
 
 const LINKS = [
+  { href: '#notices', label: "What's on" },
   { href: '#fleet', label: 'On the water' },
-  { href: '#ways', label: 'Learn & build' },
-  { href: '#seasons', label: 'Our story' },
-  { href: '#free', label: 'Visit free' },
+  { href: 'route:programs', label: 'Learn & build' },
+  { href: 'route:calendar', label: "What's on" },
+  { href: 'route:visit', label: 'Visit free' },
+  { href: 'route:about', label: 'About' },
 ]
 
 export function Nav() {
@@ -44,19 +47,19 @@ export function Nav() {
   const go = (href: string) => (e: React.MouseEvent) => {
     e.preventDefault()
     setOpen(false)
-    if (href.startsWith('route:')) goToPage('donate')
+    if (href.startsWith('route:')) goToPage(href.slice(6) as Page)
     else scrollToTarget(href)
   }
 
   return (
     <>
       <header className={`nav ${solid ? 'is-solid' : ''} ${hidden && !open ? 'is-hidden' : ''} ${open ? 'is-open' : ''}`}>
-        <a href="#top" className="nav-logo" onClick={go('#top')} aria-label="The Center for Wooden Boats, home">
+        <a href="./" className="nav-logo" onClick={go('route:home')} aria-label="The Center for Wooden Boats, home">
           <img src="img/cwb-logo.png" alt="The Center for Wooden Boats" width={150} height={54} />
         </a>
         <nav className="nav-links" aria-label="Primary">
           {LINKS.map((l) => (
-            <a key={l.href} href={l.href} onClick={go(l.href)} className="wlink">
+            <a key={l.href} href={l.href.startsWith('route:') ? hrefFor(l.href.slice(6) as Page) : l.href} onClick={go(l.href)} className="wlink">
               {l.label}
             </a>
           ))}
@@ -85,7 +88,7 @@ export function Nav() {
       <div className={`menu ${open ? 'is-open' : ''}`} aria-hidden={!open}>
         <div className="menu-inner">
           {[...LINKS, { href: '#spaces', label: 'Event rentals' }, { href: '#keep', label: 'Join' }, { href: 'route:donate', label: 'Donate' }].map((l, i) => (
-            <a key={l.href} href={l.href.replace('route:', '')} onClick={go(l.href)} style={{ ['--i' as string]: i }} className="display">
+            <a key={l.href} href={l.href.startsWith('route:') ? hrefFor(l.href.slice(6) as Page) : l.href} onClick={go(l.href)} style={{ ['--i' as string]: i }} className="display">
               {l.label}
             </a>
           ))}
