@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from 'react'
 import { LivingWater } from '../lib/livingWater'
 import { gsap, prefersReducedMotion, ScrollTrigger } from '../lib/scroll'
-import { compass, describeSky, getConditions, seattleTime, seattleNow, type Conditions } from '../lib/conditions'
+import { compass, describeSky, getConditions, phaseLabel, seattleTime, skyPhase, sunTimes, type Conditions, type SkyPhase } from '../lib/conditions'
 import { WaterButton } from './WaterButton'
 
-type Light = 'live' | 'day' | 'golden' | 'dusk'
+type Light = 'live' | 'day' | 'golden' | 'dusk' | 'night'
 
 const LINES = ['Take it out', 'on the water.']
 
@@ -15,7 +15,6 @@ export function Hero({ started }: { started: boolean }) {
   const [fallback, setFallback] = useState(false)
   const [cond, setCond] = useState<Conditions | null>(null)
   const [light, setLight] = useState<Light>('live')
-  const [hinted, setHinted] = useState(false)
 
   // Boot the WebGL lake
   useEffect(() => {
@@ -73,7 +72,6 @@ export function Hero({ started }: { started: boolean }) {
       if (onWater !== over) {
         over = onWater
         window.dispatchEvent(new CustomEvent('cursor:water', { detail: onWater }))
-        if (onWater) setHinted(true)
       }
       const r = el.getBoundingClientRect()
       const px = (e.clientX - r.left) / r.width - 0.5
@@ -130,33 +128,34 @@ export function Hero({ started }: { started: boolean }) {
     getConditions().then(setCond)
   }, [])
 
+  // Live mode follows the real sky over Seattle, re-checked every minute.
+  const [phase, setPhase] = useState<SkyPhase>(() => skyPhase())
+  const [clock, setClock] = useState(() => seattleTime(new Date()))
+  useEffect(() => {
+    const tick = () => {
+      setPhase(skyPhase())
+      setClock(seattleTime(new Date()))
+    }
+    const id = window.setInterval(tick, 30000)
+    return () => window.clearInterval(id)
+  }, [])
+
   useEffect(() => {
     const lw = water.current
     if (!lw) return
-    let mode: Light = light
-    if (light === 'live') {
-      mode = 'day'
-      if (cond) {
-        const { hour, minute } = seattleNow()
-        const mins = hour * 60 + minute
-        const toMins = (d: Date) => {
-          const s = seattleTime(d)
-          const m = s.match(/(\d+):(\d+)\s*(AM|PM)/)
-          if (!m) return 0
-          let h = Number(m[1]) % 12
-          if (m[3] === 'PM') h += 12
-          return h * 60 + Number(m[2])
-        }
-        const ss = toMins(cond.sunset)
-        const sr = toMins(cond.sunrise)
-        if (mins > ss + 10 || mins < sr - 10) mode = 'dusk'
-        else if (mins > ss - 100 || mins < sr + 50) mode = 'golden'
-      }
+    const mode: SkyPhase = light === 'live' ? phase : light
+    const target: Record<SkyPhase, [number, number]> = {
+      morning: [0.55, 0.15],
+      day: [0, 0],
+      golden: [0.85, 0],
+      dusk: [0.35, 0.85],
+      night: [0.1, 1],
     }
-    const target = { day: [0, 0], golden: [0.85, 0], dusk: [0.35, 0.85] }[mode as 'day' | 'golden' | 'dusk']
-    gsap.to(lw, { golden: target[0], dusk: target[1], duration: 1.8, ease: 'power2.inOut' })
-  }, [light, cond])
+    const [golden, dusk] = target[mode]
+    gsap.to(lw, { golden, dusk, duration: 1.8, ease: 'power2.inOut' })
+  }, [light, phase])
 
+  const sunset = cond?.live ? cond.sunset : sunTimes().sunset
   const wind = cond ? `${compass(cond.windDir)} ${cond.windKn} kn` : '...'
   return (
     <section id="top" className="hero" ref={section} data-cursor-theme="light">
@@ -180,28 +179,34 @@ export function Hero({ started }: { started: boolean }) {
           collection is yours for an afternoon.
         </p>
         <div className="hero-ctas hero-fade">
-          <WaterButton href="#fleet" variant="light">Get on the water</WaterButton>
+          <WaterButton href="#fleet" variant="solid">Get on the water</WaterButton>
           <WaterButton href="#free" variant="light" arrow={false}>Plan a free visit</WaterButton>
         </div>
       </div>
 
-      <div className={`hero-hint hero-fade ${hinted ? 'is-done' : ''}`} aria-hidden="true">
-        <span className="hint-ring" />
-        <span className="eyebrow">Drag a wake across the water</span>
-      </div>
-
       <div className="hero-bar hero-fade">
-        <div className="hb-item">
-          <span className={`hb-live ${cond?.live ? 'is-live' : ''}`} />
-          <span>Lake Union now</span>
+        <div className="hb-item hb-now" aria-live="polite">
+          <span className={`hb-live ${light === 'live' ? 'is-live' : ''}`} />
+          {light === 'live' ? (
+            <span>
+              Live: {phaseLabel[phase]} in Seattle right now · {clock}
+            </span>
+          ) : (
+            <span>
+              Previewing {phaseLabel[light]} ·{' '}
+              <button className="hb-back" onClick={() => setLight('live')}>
+                Back to live
+              </button>
+            </span>
+          )}
         </div>
         <div className="hb-item">{cond ? `${cond.tempF}°F · ${describeSky(cond.code)}` : '...'}</div>
         <div className="hb-item">Wind {wind}</div>
-        <div className="hb-item hb-hide-sm">Sunset {cond ? seattleTime(cond.sunset) : '...'}</div>
+        <div className="hb-item hb-hide-sm">Sunset {seattleTime(sunset)}</div>
         <div className="hb-light" role="group" aria-label="Light">
-          {(['live', 'day', 'golden', 'dusk'] as Light[]).map((l) => (
+          {(['live', 'day', 'golden', 'dusk', 'night'] as Light[]).map((l) => (
             <button key={l} className={light === l ? 'is-active' : ''} onClick={() => setLight(l)}>
-              {l === 'live' ? 'Live light' : l}
+              {l === 'live' ? 'Live' : l === 'golden' ? 'Golden' : l}
             </button>
           ))}
         </div>

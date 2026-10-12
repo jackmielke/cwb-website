@@ -395,11 +395,10 @@ button {
   opacity: 0;
 }
 .cursor.is-water .cursor-ring {
-  width: 56px;
-  height: 56px;
-  margin: -28px 0 0 -28px;
-  border-color: rgba(243, 238, 228, 0.7);
-  animation: cursor-ripple 1.6s var(--ease-out) infinite;
+  width: 44px;
+  height: 44px;
+  margin: -22px 0 0 -22px;
+  border-color: rgba(243, 238, 228, 0.45);
 }
 .cursor.is-water .cursor-dot {
   background: var(--paper);
@@ -407,10 +406,6 @@ button {
 .cursor.is-hidden .cursor-ring,
 .cursor.is-hidden .cursor-dot {
   opacity: 0;
-}
-@keyframes cursor-ripple {
-  0% { box-shadow: 0 0 0 0 rgba(243, 238, 228, 0.45); }
-  100% { box-shadow: 0 0 0 22px rgba(243, 238, 228, 0); }
 }
 @media (hover: none), (pointer: coarse) {
   .cursor-ring,

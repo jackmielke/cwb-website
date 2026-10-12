@@ -3,6 +3,7 @@ import { Layout } from '../components/Layout'
 import { PageHero, Btn, Eyebrow, Section } from '../components/ui'
 import { img } from '../../lib/img'
 import { INQUIRY_URL } from '../../lib/inquiry'
+import { InquiryEmbed } from '../../components/InquiryEmbed'
 
 const spaces = [
   { id: 'loft', name: 'Wagner Sail Loft', where: 'Wagner Education Center, second floor', size: "26' × 44'", seated: 80, standing: 100, img: 'sail-loft-event.jpg', body: 'Where our volunteers cut and repair sails. Cork floors, warm wood walls, steel accents, elevator access, windows over the campus and a balcony looking down into the boatshop.', incl: ['Ten 60" rounds', 'Ten 6\' banquet tables', '103 black folding chairs'] },
@@ -82,22 +83,15 @@ export default function Spaces() {
           <div className="lg:col-span-4 reveal">
             <Eyebrow className="text-rust">Inquire</Eyebrow>
             <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Booking inquiry</h2>
-            <p className="mt-6 text-ink-3 leading-relaxed">The Event Rentals Team reads every inquiry and replies with availability and a quote. A date you choose here is a preference, not a booking.</p>
+            <p className="mt-6 text-ink-3 leading-relaxed">The Event Rentals Team reads every inquiry and replies with availability and a quote. Inquiries go to the event rentals team and our catering partner, Ravishing Radish. A date you choose here is a preference, not a booking.</p>
             <figure className="mt-10 border-l-2 border-rust pl-6">
               <blockquote className="display-i text-2xl leading-snug">"The venue truly made the date memorable, and we couldn't have been happier."</blockquote>
               <figcaption className="mt-3 text-sm text-ink-3">Laura & Ben, married on the docks</figcaption>
             </figure>
           </div>
           <div className="lg:col-span-8 reveal">
-            <div className="rounded-md bg-ink text-paper p-8 md:p-14">
-              <p className="eyebrow text-brass">Takes about three minutes</p>
-              <p className="display text-4xl md:text-5xl mt-4">Tell us your date, guest count and space</p>
-              <p className="mt-5 text-paper/70 text-lg max-w-xl">The form opens right here. Inquiries go to the event rentals team and our catering partner, Ravishing Radish, who reply with availability and a quote.</p>
-              <ul className="mt-8 grid sm:grid-cols-2 gap-x-8 gap-y-2 text-paper/80">
-                {['Floating Boat House', 'Wagner Education Center Sail Loft', 'Bill Garden Boat Hall', 'Full-building buyout'].map((x) => <li key={x} className="flex gap-3"><span className="text-brass">•</span>{x}</li>)}
-              </ul>
-              <div className="mt-10 flex flex-wrap items-center gap-4"><Btn href={INQUIRY_URL} variant="paper">Start an inquiry</Btn><span className="text-sm text-paper/50">Members save 10% on rentals.</span></div>
-            </div>
+            <InquiryEmbed className="rounded-md" />
+            <p className="mt-3 text-sm text-ink-3">Form not showing? <a className="underline" href={INQUIRY_URL} data-newtab target="_blank" rel="noreferrer">Open it in a new tab</a>. Members save 10% on rentals.</p>
           </div>
         </div>
       </Section>

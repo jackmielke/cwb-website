@@ -119,3 +119,51 @@ export function verdict(c: Conditions) {
     return { title: 'Fresh breeze.', body: 'Spirited conditions. Experienced sailors only; everyone else, a rowboat in the lee.' }
   return { title: 'Too much breeze.', body: 'The dockmaster will likely keep the small boats in. Come see them up close instead.' }
 }
+
+// Sunrise and sunset for Lake Union on a given day, computed locally (NOAA approximation),
+// so the live sky is right even before or without the weather fetch.
+export function sunTimes(date = new Date()) {
+  const rad = Math.PI / 180
+  const dayMs = 86400000
+  const J1970 = 2440588
+  const J2000 = 2451545
+  const toJulian = (d: Date) => d.getTime() / dayMs - 0.5 + J1970
+  const fromJulian = (j: number) => new Date((j + 0.5 - J1970) * dayMs)
+  const lw = -LON * rad
+  const phi = LAT * rad
+  const d = toJulian(date) - J2000
+  const n = Math.round(d - 0.0009 - lw / (2 * Math.PI))
+  const ds = 0.0009 + lw / (2 * Math.PI) + n
+  const M = rad * (357.5291 + 0.98560028 * ds)
+  const C = rad * (1.9148 * Math.sin(M) + 0.02 * Math.sin(2 * M) + 0.0003 * Math.sin(3 * M))
+  const L = M + C + rad * 102.9372 + Math.PI
+  const dec = Math.asin(Math.sin(L) * Math.sin(rad * 23.4397))
+  const Jnoon = J2000 + ds + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L)
+  const w = Math.acos((Math.sin(-0.833 * rad) - Math.sin(phi) * Math.sin(dec)) / (Math.cos(phi) * Math.cos(dec)))
+  const Jset = J2000 + 0.0009 + (w + lw) / (2 * Math.PI) + n + 0.0053 * Math.sin(M) - 0.0069 * Math.sin(2 * L)
+  const Jrise = Jnoon - (Jset - Jnoon)
+  return { sunrise: fromJulian(Jrise), sunset: fromJulian(Jset) }
+}
+
+export type SkyPhase = 'morning' | 'day' | 'golden' | 'dusk' | 'night'
+
+// What the sky over Lake Union is doing right now.
+export function skyPhase(now = new Date()): SkyPhase {
+  const { sunrise, sunset } = sunTimes(now)
+  const m = (a: Date) => (now.getTime() - a.getTime()) / 60000
+  const sinceRise = m(sunrise)
+  const sinceSet = m(sunset)
+  if (sinceRise < -35 || sinceSet > 45) return 'night'
+  if (sinceRise < 60) return 'morning'
+  if (sinceSet > -5) return 'dusk'
+  if (sinceSet > -90) return 'golden'
+  return 'day'
+}
+
+export const phaseLabel: Record<SkyPhase, string> = {
+  morning: 'sunrise',
+  day: 'daytime',
+  golden: 'golden hour',
+  dusk: 'dusk',
+  night: 'night',
+}
