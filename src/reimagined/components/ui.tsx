@@ -2,7 +2,7 @@ import type { ReactNode } from 'react'
 import { Link } from 'react-router-dom'
 
 export function Eyebrow({ children, className = '' }: { children: ReactNode; className?: string }) {
-  return <p className={`eyebrow flex items-center gap-3 ${className}`}><span className="h-px w-8 bg-current opacity-50" />{children}</p>
+  return <p className={`eyebrow ${className}`}>{children}</p>
 }
 
 export function Arrow({ className = '' }: { className?: string }) {
@@ -22,7 +22,7 @@ export function Btn({ to, href, children, variant = 'rust', className = '' }: Bt
     ghost: 'border border-ink/25 text-ink hover:bg-ink hover:text-paper',
     'ghost-light': 'border border-paper/40 text-paper hover:bg-paper hover:text-ink',
   }[variant]
-  const cls = `group inline-flex h-12 items-center gap-3 rounded-full px-6 text-[15px] font-semibold transition ${v} ${className}`
+  const cls = `group inline-flex h-12 items-center gap-3 rounded-[3px] px-6 text-[15px] font-semibold transition ${v} ${className}`
   if (to) return <Link to={to} className={cls}>{children} <Arrow /></Link>
   return <a href={href} className={cls}>{children} <Arrow /></a>
 }

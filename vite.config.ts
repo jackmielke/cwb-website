@@ -5,4 +5,6 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   base: './',
   plugins: [react()],
+  // Two pages: the comparison site (index.html) and the immersive experience (experience/index.html).
+  build: { rollupOptions: { input: { main: 'index.html', experience: 'experience/index.html' } } },
 })

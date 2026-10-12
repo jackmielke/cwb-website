@@ -29,10 +29,10 @@ export default function Learn() {
   const list = useMemo(() => programs.filter((p) => (who === 'All' || p.who.includes(who)) && (what === 'All' || p.what === what)), [who, what])
   return (
     <Layout overlay>
-      <PageHero eyebrow="Learn & build" image={img('boatbuilder-planing.jpg')} title={<>Skills you learn <span className="display-i text-brass">with your hands.</span></>} intro="Our instructors have taught tens of thousands of people to sail, row and build since 1976. Pick your crew and your craft, and we will point you to the right first step." />
+      <PageHero eyebrow="Learn" image={img('boatbuilder-planing.jpg')} title="Classes and camps" intro="Sailing, rowing and boatbuilding classes for adults, and sailing camps for kids, taught on Lake Union since 1976." />
 
       <Section className="py-20">
-        <div className="rounded-[28px] bg-ink text-paper p-6 md:p-10 reveal">
+        <div className="rounded-md bg-ink text-paper p-6 md:p-10 reveal">
           <p className="display text-3xl md:text-4xl">Find your program</p>
           <div className="mt-8 grid md:grid-cols-2 gap-8">
             <Filter label="Who is learning?" value={who} set={setWho} opts={['All', 'Adults', 'Youth', 'Families']} />
@@ -42,9 +42,9 @@ export default function Learn() {
         <p className="mt-8 font-mono text-sm text-ink-3">{list.length} programs</p>
         <div className="mt-4 grid md:grid-cols-2 lg:grid-cols-3 gap-6">
           {list.map((p) => (
-            <a key={p.t} href={p.href} className="group rounded-[28px] border border-ink/10 bg-paper p-8 flex flex-col hover:border-rust hover:-translate-y-1 transition duration-300">
+            <a key={p.t} href={p.href} className="group rounded-md border border-ink/10 bg-paper p-8 flex flex-col hover:border-rust hover:-translate-y-1 transition duration-300">
               <div className="flex flex-wrap gap-2">
-                <span className="rounded-full bg-rust/10 text-rust px-3 py-1 text-xs font-semibold">{p.what}</span>
+                <span className="rounded-[3px] bg-rust/10 text-rust px-3 py-1 text-xs font-semibold">{p.what}</span>
                 {p.who.map((w) => <span key={w} className="rounded-full bg-paper-2 px-3 py-1 text-xs font-semibold">{w}</span>)}
               </div>
               <p className="display text-3xl mt-6">{p.t}</p>
@@ -60,10 +60,10 @@ export default function Learn() {
 
       <section className="bg-paper-2 py-24">
         <div className="mx-auto max-w-site px-5 md:px-10 grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 reveal"><img src={img('youth-paddle.jpg')} alt="Two kids paddling a homemade boat on Lake Union" className="rounded-[28px] w-full aspect-[4/3] object-cover" /></div>
+          <div className="lg:col-span-6 reveal"><img src={img('youth-paddle.jpg')} alt="Two kids paddling a homemade boat on Lake Union" className="rounded-md w-full aspect-[4/3] object-cover" /></div>
           <div className="lg:col-span-5 lg:col-start-8 reveal">
             <Eyebrow className="text-rust">Young Mariners Initiative</Eyebrow>
-            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Every kid should get to <span className="display-i text-rust">take the tiller.</span></h2>
+            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Youth sailing and camps</h2>
             <p className="mt-6 text-lg text-ink-3 leading-relaxed">Scholarships, free after-school sailing on El Toros, intro-to-maritime programs for high schoolers and paid internships with partners like the Port of Seattle. 111 youth scholarships went out in a single year.</p>
             <div className="mt-8 flex flex-wrap gap-3"><Btn href="https://www.cwb.org/ymi">Apply or learn more</Btn><Btn href="mailto:youth@cwb.org" variant="ghost">youth@cwb.org</Btn></div>
           </div>
@@ -74,11 +74,11 @@ export default function Learn() {
         <div className="grid lg:grid-cols-12 gap-10 items-center">
           <div className="lg:col-span-5 reveal">
             <Eyebrow className="text-rust">Boatwright in Residence</Eyebrow>
-            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">The next generation of boatwrights trains here.</h2>
+            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Boatwright apprenticeship</h2>
             <p className="mt-6 text-lg text-ink-3 leading-relaxed">Recent graduates of wooden boatbuilding programs join our four boatshops to restore the fleet alongside our staff. Apprentices rebuilt <em>Pamela</em>, a 1936 Blanchard Junior Knockabout, frame by steam-bent frame.</p>
             <div className="mt-8"><Btn href="https://www.cwb.org/boatwright-apprentice" variant="ghost">About the apprenticeship</Btn></div>
           </div>
-          <div className="lg:col-span-6 lg:col-start-7 reveal"><img src={img('boat-ribs.jpg')} alt="Boatwrights fitting steam-bent ribs into a wooden hull" className="rounded-[28px] w-full aspect-[4/3] object-cover" /></div>
+          <div className="lg:col-span-6 lg:col-start-7 reveal"><img src={img('boat-ribs.jpg')} alt="Boatwrights fitting steam-bent ribs into a wooden hull" className="rounded-md w-full aspect-[4/3] object-cover" /></div>
         </div>
       </Section>
     </Layout>

@@ -1,0 +1,4 @@
+{
+  "redirects": [{ "source": "/experience", "destination": "/experience/", "permanent": false }],
+  "rewrites": [{ "source": "/experience/:path((?!assets/|img/).*)", "destination": "/experience/index.html" }]
+}

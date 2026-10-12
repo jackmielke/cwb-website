@@ -1,0 +1,77 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: var(--paper);
+  color: var(--ink);
+  will-change: transform;
+}
+.pre-inner {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  padding: 28px var(--gutter);
+}
+.pre-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+}
+.pre-bottom .eyebrow {
+  flex: 1;
+}
+.pre-bottom .eyebrow:last-child {
+  text-align: right;
+}
+.pre-year {
+  font-size: clamp(64px, 12vw, 180px);
+  line-height: 0.8;
+  font-variant-numeric: tabular-nums;
+  color: var(--rust);
+}
+.pre-drawing {
+  align-self: center;
+  justify-self: center;
+  width: min(1000px, 92vw);
+  height: auto;
+}
+.pre-drawing .bd-grid line {
+  stroke: var(--ink);
+  opacity: 0;
+  animation: pre-fade 0.9s 0.2s forwards;
+}
+.pre-drawing .bd-lines path {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+  animation: pre-draw 1.4s calc(0.3s + var(--i) * 0.16s) var(--ease-water) forwards;
+}
+.pre-drawing .bd-wl {
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+@keyframes pre-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes pre-fade {
+  to { opacity: 0.1; }
+}
+.pre-wave {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  width: 100%;
+  height: 80px;
+  fill: var(--paper);
+  margin-top: -1px;
+}
+@media (max-width: 700px) {
+  .pre-bottom {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .pre-bottom .eyebrow:last-child {
+    text-align: left;
+  }
+}

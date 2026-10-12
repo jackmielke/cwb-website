@@ -24,7 +24,7 @@ const values = [
 export default function Story() {
   return (
     <Layout overlay>
-      <PageHero eyebrow="Our story · 1976–2026" image={img('docks-skyline.jpg')} title={<>It's written <span className="display-i text-brass">in the boats.</span></>} intro="The Center for Wooden Boats connects each of us to Seattle's living maritime heritage, through hands-on experiences building, exploring and using small boats." />
+      <PageHero eyebrow="1976 to 2026" image={img('docks-skyline.jpg')} title="Our history" intro="The Center for Wooden Boats connects each of us to Seattle's living maritime heritage, through hands-on experiences building, exploring and using small boats." />
 
       <Section className="py-24 md:py-32">
         <div className="relative">
@@ -32,7 +32,7 @@ export default function Story() {
           <ol className="space-y-20">
             {chapters.map((c) => (
               <li key={c.y} className="relative grid md:grid-cols-4 gap-6 pl-14 md:pl-0 reveal">
-                <span className="absolute left-[11px] md:left-[calc(25%-8px)] top-4 h-4 w-4 rounded-full bg-rust ring-[6px] ring-paper" />
+                <span className="absolute left-[11px] md:left-[calc(25%-8px)] top-4 h-4 w-4 rounded-[3px] bg-rust ring-[6px] ring-paper" />
                 <p className="display text-6xl md:text-8xl text-rust leading-none md:pr-16 md:text-right">{c.y}</p>
                 <div className="md:col-span-3 md:pl-16 max-w-2xl">
                   <h2 className="display text-3xl md:text-4xl">{c.h}</h2>
@@ -47,9 +47,9 @@ export default function Story() {
       <section className="bg-ink text-paper py-24">
         <div className="mx-auto max-w-site px-5 md:px-10">
           <div className="grid lg:grid-cols-12 gap-10 items-end reveal">
-            <div className="lg:col-span-7"><Eyebrow className="text-brass">Our guiding stars</Eyebrow><h2 className="display text-[44px] md:text-[72px] leading-[.95] mt-5">A future where every community <span className="display-i text-brass">knows the water.</span></h2></div>
+            <div className="lg:col-span-7"><Eyebrow className="text-brass">Our guiding stars</Eyebrow><h2 className="display text-[44px] md:text-[72px] leading-[.95] mt-5">Mission and vision</h2></div>
           </div>
-          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-paper/10 rounded-[28px] overflow-hidden">
+          <div className="mt-14 grid sm:grid-cols-2 lg:grid-cols-3 gap-px bg-paper/10 rounded-md overflow-hidden">
             {values.map(([t, d]) => <div key={t} className="bg-ink p-8 reveal"><p className="display text-3xl">{t}</p><p className="mt-3 text-paper/60">{d}</p></div>)}
           </div>
         </div>
@@ -57,10 +57,10 @@ export default function Story() {
 
       <Section className="py-24">
         <div className="grid lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 reveal"><img src={img('aerial-slu.jpg')} alt="Aerial view of the CWB campus and South Lake Union" className="rounded-[28px] w-full aspect-[4/3] object-cover" /></div>
+          <div className="lg:col-span-6 reveal"><img src={img('aerial-slu.jpg')} alt="Aerial view of the CWB campus and South Lake Union" className="rounded-md w-full aspect-[4/3] object-cover" /></div>
           <div className="lg:col-span-5 lg:col-start-8 reveal">
             <Eyebrow className="text-rust">Seattle's floating landmark</Eyebrow>
-            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Protected, so it can stay open to everyone.</h2>
+            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">A Seattle landmark</h2>
             <p className="mt-6 text-lg text-ink-3 leading-relaxed">The City of Seattle designated our floating structures on Waterway 4 and the Old Boathouse, the Wagner Floating Home, as landmarks. Thank you to everyone who wrote letters and testified, to historian Sarah Martin, and to 4Culture.</p>
             <div className="mt-8 flex flex-wrap gap-3"><Btn href="https://www.cwb.org/s/LandmarkCompleteApplication_02-17-2021_FINAL.pdf" variant="ghost">Read the nomination</Btn></div>
           </div>

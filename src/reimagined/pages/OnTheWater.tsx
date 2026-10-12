@@ -17,14 +17,14 @@ export default function OnTheWater() {
   const [member, setMember] = useState(false)
   return (
     <Layout overlay>
-      <PageHero eyebrow="On the water" image={img('dinghy-sail.jpg')} title={<>History is better <span className="display-i text-brass">with the wind in it.</span></>} intro="Every boat in our livery is part of the museum collection. Rent one by the hour, row a peapod for free, or let a volunteer skipper take you out on Public Sail.">
+      <PageHero eyebrow="On the water" image={img('dinghy-sail.jpg')} title="Rent a boat" intro="Every boat in our livery is part of the museum collection. Rent one by the hour, row a peapod for free, or let a volunteer skipper take you out on Public Sail.">
         <div className="inline-flex items-center gap-3 rounded-full bg-paper/10 backdrop-blur px-5 py-3 text-sm"><StatusDot state={st.state} /> {st.headline}{st.rentals ? '' : ' · Livery reopens in March'}</div>
       </PageHero>
 
       <Section className="py-24">
         <div className="grid md:grid-cols-3 gap-6">
           {steps.map((s) => (
-            <div key={s.n} className="rounded-[28px] border border-ink/10 p-8 reveal">
+            <div key={s.n} className="rounded-md border border-ink/10 p-8 reveal">
               <p className="display text-7xl text-rust leading-none">{s.n}</p>
               <p className="display text-3xl mt-6">{s.t}</p>
               <p className="mt-3 text-ink-3 leading-relaxed">{s.d}</p>
@@ -37,14 +37,14 @@ export default function OnTheWater() {
         <div className="flex flex-wrap items-end justify-between gap-6 reveal">
           <div>
             <Eyebrow className="text-rust">The livery · mid-March through October</Eyebrow>
-            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Rates, per boat, per hour.</h2>
+            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Hourly rates</h2>
           </div>
           <div className="inline-flex rounded-full bg-paper-2 p-1.5 text-sm font-semibold" role="group" aria-label="Pricing">
             <button onClick={() => setMember(false)} className={`px-5 h-10 rounded-full transition ${!member ? 'bg-ink text-paper' : ''}`}>General</button>
             <button onClick={() => setMember(true)} className={`px-5 h-10 rounded-full transition ${member ? 'bg-rust text-paper' : ''}`}>Member</button>
           </div>
         </div>
-        <div className="mt-10 rounded-[28px] overflow-hidden border border-ink/10 reveal">
+        <div className="mt-10 rounded-md overflow-hidden border border-ink/10 reveal">
           {rates.map((r, i) => (
             <div key={r.cls} className={`grid grid-cols-12 items-center gap-4 px-6 md:px-10 py-6 ${i % 2 ? 'bg-paper-2/50' : ''}`}>
               <div className="col-span-12 md:col-span-4"><p className="display text-2xl md:text-3xl">{r.cls}</p><p className="text-sm text-ink-3 mt-1">{r.who}</p></div>
@@ -60,7 +60,7 @@ export default function OnTheWater() {
       <section className="bg-ink text-paper py-24">
         <div className="mx-auto max-w-site px-5 md:px-10">
           <Eyebrow className="text-brass reveal">What you can take out</Eyebrow>
-          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-paper/10 rounded-[28px] overflow-hidden">
+          <div className="mt-10 grid sm:grid-cols-2 lg:grid-cols-4 gap-px bg-paper/10 rounded-md overflow-hidden">
             {fleet.map((b) => (
               <div key={b.name} className="bg-ink p-7 reveal">
                 <p className="eyebrow text-paper/50">{b.type}</p>
@@ -76,11 +76,11 @@ export default function OnTheWater() {
       <Section className="py-24" id="free">
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-5 reveal">
-            <Eyebrow className="text-rust">Free, on purpose</Eyebrow>
-            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Free Boating Days, <span className="display-i text-rust">2026.</span></h2>
+            <Eyebrow className="text-rust">Free programs</Eyebrow>
+            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Free Boating Days, 2026.</h2>
             <p className="mt-6 text-lg text-ink-3 leading-relaxed">On these Sundays, volunteer skippers take the public out on everything from sprit boats to steamboats, and kids build toy boats to launch in the park pond. Sign-up starts at 1pm out front of the Wagner Education Center. Rides last about 45 minutes, rain or shine.</p>
             <div className="mt-8 flex flex-wrap gap-2">
-              {freeDays2026.map((d) => <span key={d} className="rounded-full border border-ink/15 px-4 py-2 font-mono text-sm">{d}</span>)}
+              {freeDays2026.map((d) => <span key={d} className="rounded-[3px] border border-ink/15 px-4 py-2 font-mono text-sm">{d}</span>)}
             </div>
             <p className="mt-6 text-sm text-ink-3">Dates for 2027 will be posted in the spring.</p>
           </div>
@@ -103,12 +103,12 @@ export default function OnTheWater() {
       <section className="bg-paper-2 py-24">
         <div className="mx-auto max-w-site px-5 md:px-10">
           <div className="grid lg:grid-cols-12 gap-10 items-end reveal">
-            <div className="lg:col-span-7"><Eyebrow className="text-rust">Season passes · members only</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Sail all year for one price.</h2></div>
+            <div className="lg:col-span-7"><Eyebrow className="text-rust">Season passes · members only</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Season passes</h2></div>
             <p className="lg:col-span-5 text-ink-3 text-lg">For people who would live on the lake if they could. Passes run 365 days and cover sail and human-powered boats.</p>
           </div>
           <div className="mt-12 grid md:grid-cols-3 gap-6">
             {passes.map((p, i) => (
-              <div key={p.name} className={`rounded-[28px] p-8 reveal ${i === 2 ? 'bg-ink text-paper' : 'bg-paper'}`}>
+              <div key={p.name} className={`rounded-md p-8 reveal ${i === 2 ? 'bg-ink text-paper' : 'bg-paper'}`}>
                 <p className="eyebrow opacity-60">{p.name}</p>
                 <p className="display text-7xl mt-4">${p.price}</p>
                 <p className="mt-4 opacity-75 leading-relaxed">{p.body}</p>
@@ -124,11 +124,11 @@ export default function OnTheWater() {
         <div className="relative mx-auto max-w-site px-5 md:px-10 py-28 grid lg:grid-cols-12 gap-10 items-end">
           <div className="lg:col-span-7 reveal">
             <Eyebrow className="text-brass">Charter cruises · April to September</Eyebrow>
-            <h2 className="display text-[44px] md:text-[72px] leading-[.95] mt-5">Let a captain <span className="display-i text-brass">do the steering.</span></h2>
+            <h2 className="display text-[44px] md:text-[72px] leading-[.95] mt-5">Private charters</h2>
             <p className="mt-6 text-lg text-paper/80 max-w-xl">Ninety minutes aboard Boat House No. 5, a restored Bill Garden launch, past the skyline, Gas Works Park, the drydocks and the floating homes. Bring a picnic. Well-behaved dogs encouraged.</p>
           </div>
           <div className="lg:col-span-5 reveal">
-            <div className="rounded-[28px] bg-paper/10 backdrop-blur p-8">
+            <div className="rounded-md bg-paper/10 backdrop-blur p-8">
               <p className="display text-6xl">$280<span className="text-lg font-sans text-paper/60"> members</span></p>
               <p className="display text-3xl text-paper/70 mt-1">$350 general</p>
               <p className="mt-4 text-paper/70">Up to 6 guests, ideally 4. Book at least 24 hours ahead.</p>

@@ -28,7 +28,7 @@ export default function Spaces() {
   const [open, setOpen] = useState<number | null>(0)
   return (
     <Layout overlay>
-      <PageHero eyebrow="Events & spaces" image={img('dock-wedding.jpg')} title={<>Celebrate <span className="display-i text-brass">at the water's edge.</span></>} intro="Weddings, rehearsal dinners, holiday parties, team offsites. Two rooms, one deck, a skyline, and 170 wooden boats for a backdrop. Every booking helps keep the museum free.">
+      <PageHero eyebrow="Events" image={img('dock-wedding.jpg')} title="Event rentals" intro="Weddings, rehearsal dinners, holiday parties and meetings in the Floating Boat House, the Wagner Education Center Sail Loft and the Bill Garden Boat Hall. Rental fees support the museum.">
         <div className="flex flex-wrap gap-3"><Btn href="#inquire" variant="paper">Start an inquiry</Btn><Btn href="https://www.cwb.org/s/Facility-Rental-Information-Packet-Updated-111722.docx" variant="ghost-light">Download the info packet</Btn></div>
       </PageHero>
 
@@ -36,7 +36,7 @@ export default function Spaces() {
         <div className="space-y-24">
           {spaces.map((s, i) => (
             <div key={s.id} className="grid lg:grid-cols-12 gap-10 items-center">
-              <div className={`lg:col-span-7 reveal ${i % 2 ? 'lg:order-2' : ''}`}><img src={img(s.img)} alt={s.name} className="rounded-[28px] w-full aspect-[4/3] object-cover" /></div>
+              <div className={`lg:col-span-7 reveal ${i % 2 ? 'lg:order-2' : ''}`}><img src={img(s.img)} alt={s.name} className="rounded-md w-full aspect-[4/3] object-cover" /></div>
               <div className={`lg:col-span-5 reveal ${i % 2 ? 'lg:order-1' : ''}`}>
                 <Eyebrow className="text-rust">{s.where}</Eyebrow>
                 <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">{s.name}</h2>
@@ -57,7 +57,7 @@ export default function Spaces() {
       <section className="bg-ink text-paper py-24">
         <div className="mx-auto max-w-site px-5 md:px-10">
           <div className="grid lg:grid-cols-12 gap-10 items-end reveal">
-            <div className="lg:col-span-7"><Eyebrow className="text-brass">2026 rates · either space</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Five hours, set up to clean up.</h2></div>
+            <div className="lg:col-span-7"><Eyebrow className="text-brass">2026 rates · either space</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">2026 rates</h2></div>
             <p className="lg:col-span-5 text-paper/70 text-lg">50% at booking with a refundable $500 deposit, balance one month before the event. Full-building buyouts and the Bill Garden Boat Hall are quoted on request.</p>
           </div>
           <div className="mt-12 overflow-x-auto reveal">
@@ -82,7 +82,7 @@ export default function Spaces() {
         <div className="grid lg:grid-cols-12 gap-12">
           <div className="lg:col-span-4 reveal">
             <Eyebrow className="text-rust">Inquire</Eyebrow>
-            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Tell us about your day.</h2>
+            <h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Booking inquiry</h2>
             <p className="mt-6 text-ink-3 leading-relaxed">The Event Rentals Team reads every inquiry and replies with availability and a quote. A date you choose here is a preference, not a booking.</p>
             <figure className="mt-10 border-l-2 border-rust pl-6">
               <blockquote className="display-i text-2xl leading-snug">"The venue truly made the date memorable, and we couldn't have been happier."</blockquote>
@@ -91,13 +91,13 @@ export default function Spaces() {
           </div>
           <div className="lg:col-span-8 reveal">
             {sent ? (
-              <div className="rounded-[28px] bg-ink text-paper p-10 md:p-14">
+              <div className="rounded-md bg-ink text-paper p-10 md:p-14">
                 <p className="display text-5xl">Thank you.</p>
                 <p className="mt-4 text-paper/70 text-lg max-w-xl">In production this would land with the Event Rentals Team. For this concept, please send it through the live inquiry form so nothing gets lost.</p>
-                <div className="mt-8 flex flex-wrap gap-3"><Btn href="https://ravishingradish.com/cwb-inquiry" variant="paper">Open the live inquiry form</Btn><button onClick={() => setSent(false)} className="h-12 px-6 rounded-full border border-paper/30 font-semibold">Edit my answers</button></div>
+                <div className="mt-8 flex flex-wrap gap-3"><Btn href="https://ravishingradish.com/cwb-inquiry" variant="paper">Open the live inquiry form</Btn><button onClick={() => setSent(false)} className="h-12 px-6 rounded-[3px] border border-paper/30 font-semibold">Edit my answers</button></div>
               </div>
             ) : (
-              <form className="rounded-[28px] bg-paper-2 p-6 md:p-10 grid md:grid-cols-2 gap-6" onSubmit={(e) => { e.preventDefault(); setSent(true) }}>
+              <form className="rounded-md bg-paper-2 p-6 md:p-10 grid md:grid-cols-2 gap-6" onSubmit={(e) => { e.preventDefault(); setSent(true) }}>
                 <fieldset className="md:col-span-2">
                   <legend className="eyebrow text-ink-3">Which spaces?</legend>
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -131,7 +131,7 @@ export default function Spaces() {
 
       <section className="bg-paper-2 py-24">
         <div className="mx-auto max-w-site px-5 md:px-10 grid lg:grid-cols-12 gap-10">
-          <div className="lg:col-span-4 reveal"><Eyebrow className="text-rust">Good to know</Eyebrow><h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">Questions planners ask.</h2></div>
+          <div className="lg:col-span-4 reveal"><Eyebrow className="text-rust">Good to know</Eyebrow><h2 className="display text-[40px] md:text-[56px] leading-[1] mt-5">FAQ</h2></div>
           <div className="lg:col-span-8">
             {faqs.map(([q, a], i) => (
               <div key={q} className="border-b border-ink/15">

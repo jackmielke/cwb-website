@@ -1,0 +1,142 @@
+.seasons {
+  position: relative;
+  height: 100vh;
+  min-height: 640px;
+  background: var(--paper);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(96px, 12vh, 140px) var(--gutter) 40px;
+}
+.fs-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4vw;
+  align-items: end;
+}
+.fs-head .eyebrow {
+  color: var(--rust);
+  margin: 0 0 18px;
+}
+.fs-years {
+  position: relative;
+  height: 0.9em;
+  font-size: clamp(90px, 15vw, 250px);
+  line-height: 0.9;
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  color: var(--lake);
+}
+.fs-year {
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.fs-year-0 {
+  opacity: 1;
+}
+.fs-items {
+  position: relative;
+  min-height: 210px;
+  padding-bottom: 8px;
+}
+.fs-item {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  opacity: 0;
+}
+.fs-item-0 {
+  opacity: 1;
+}
+.fs-item h3 {
+  margin: 0 0 12px;
+  font-size: clamp(28px, 2.8vw, 46px);
+  line-height: 1.02;
+  max-width: 18ch;
+}
+.fs-item p {
+  margin: 0;
+  max-width: 44ch;
+  color: var(--ink-soft);
+}
+.fs-count {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  margin: 0;
+  color: var(--ink-soft);
+}
+.fs-count b {
+  font-weight: 500;
+  color: var(--rust);
+}
+.fs-hull {
+  flex: 1;
+  width: 100%;
+  min-height: 0;
+  margin-top: 2vh;
+}
+.fs-mold {
+  stroke: var(--ink);
+  stroke-opacity: 0.25;
+  stroke-width: 1;
+  stroke-dasharray: 3 4;
+}
+.fs-backbone {
+  fill: none;
+  stroke: var(--lake);
+  stroke-width: 3;
+  stroke-dasharray: 1;
+  stroke-linecap: round;
+}
+.fs-strake {
+  filter: drop-shadow(0 2px 0 rgba(60, 30, 10, 0.25));
+}
+.fs-lapline {
+  fill: none;
+  stroke: rgba(55, 25, 8, 0.55);
+  stroke-width: 1.1;
+}
+.fs-rivet {
+  fill: #e2c088;
+  stroke: rgba(55, 25, 8, 0.5);
+  stroke-width: 0.5;
+}
+.fs-wl {
+  stroke: var(--rust);
+  stroke-width: 1.2;
+  stroke-dasharray: 1;
+  stroke-dashoffset: 1;
+}
+.fs-wl-label {
+  font-family: var(--mono);
+  font-size: 11px;
+  text-anchor: end;
+  fill: var(--rust);
+  letter-spacing: 0.1em;
+}
+@media (prefers-reduced-motion: reduce) {
+  .seasons {
+    height: auto;
+  }
+  .fs-items .fs-item {
+    position: static;
+    opacity: 1;
+    margin-bottom: 24px;
+  }
+  .fs-backbone {
+    stroke-dashoffset: 0;
+  }
+}
+@media (max-width: 900px) {
+  .fs-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+  .fs-items {
+    min-height: 220px;
+  }
+}

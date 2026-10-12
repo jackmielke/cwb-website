@@ -5,16 +5,17 @@
 @layer base {
   html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
   body { margin: 0; }
-  ::selection { background: #D9A441; color: #0E1F2A; }
+  ::selection { background: #F2B530; color: #0B1D29; }
 }
 
 @layer components {
 /* ---------- Reimagined ---------- */
-.rx { font-family: 'Hanken Grotesk', system-ui, sans-serif; color: #0E1F2A; background: #F3EEE4; }
-.rx .display { font-family: 'Fraunces', Georgia, serif; font-variation-settings: 'SOFT' 50, 'opsz' 144; letter-spacing: -0.02em; }
-.rx .display-i { font-family: 'Fraunces', Georgia, serif; font-style: italic; font-variation-settings: 'SOFT' 100, 'opsz' 144; }
-.rx .eyebrow { font-family: 'JetBrains Mono', ui-monospace, monospace; font-size: 11px; letter-spacing: .18em; text-transform: uppercase; }
-.rx .grain::after {
+.rx { font-family: 'Archivo', Arial, sans-serif; font-variation-settings: 'wdth' 100; color: #0B1D29; background: #FFFFFF; }
+/* Hull-lettering display face: Archivo, heavy and slightly expanded. */
+.rx .display { font-family: 'Archivo', Arial, sans-serif; font-weight: 800; font-stretch: 112%; font-variation-settings: 'wdth' 112; letter-spacing: -0.025em; }
+.rx .display-i { font: inherit; color: inherit !important; }
+.rx .eyebrow { font-family: 'Archivo', Arial, sans-serif; font-weight: 700; font-stretch: 90%; font-variation-settings: 'wdth' 90; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; }
+.rx .grain-off::after {
   content: ''; position: absolute; inset: 0; pointer-events: none; opacity: .08; mix-blend-mode: multiply;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }

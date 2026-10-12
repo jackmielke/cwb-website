@@ -5,17 +5,17 @@ export default {
   theme: {
     extend: {
       colors: {
-        paper: { DEFAULT: '#F3EEE4', 2: '#E9E1D2', 3: '#DDD2BE' },
-        ink: { DEFAULT: '#0E1F2A', 2: '#1C3442', 3: '#3B5160' },
+        paper: { DEFAULT: '#FFFFFF', 2: '#EDF1F2', 3: '#D9E0E3' },
+        ink: { DEFAULT: '#0B1D29', 2: '#13303F', 3: '#46596A' },
         rust: { DEFAULT: '#AD4E25', deep: '#8A3A18', light: '#D9774A' },
-        brass: { DEFAULT: '#D9A441', light: '#F0CC7E' },
+        brass: { DEFAULT: '#F2B530', light: '#F8D27C' },
         sea: { DEFAULT: '#2F6B73', light: '#7FAFAF' },
         sqs: { text: '#2b2b2b', muted: '#6b6b6b', line: '#e2e2e2' },
       },
       fontFamily: {
-        display: ['Fraunces', 'Georgia', 'serif'],
-        sans: ['"Hanken Grotesk"', 'system-ui', 'sans-serif'],
-        mono: ['"JetBrains Mono"', 'ui-monospace', 'monospace'],
+        display: ['Archivo', 'Arial', 'sans-serif'],
+        sans: ['Archivo', 'Arial', 'sans-serif'],
+        mono: ['Archivo', 'Arial', 'sans-serif'],
         opensans: ['"Open Sans"', 'Arial', 'sans-serif'],
         franklin: ['"Libre Franklin"', 'Arial', 'sans-serif'],
       },

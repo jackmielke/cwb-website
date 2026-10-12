@@ -1,0 +1,119 @@
+.free .section-head h2 em {
+  color: var(--rust);
+}
+.fd-lede {
+  margin-top: 24px !important;
+  max-width: 46ch !important;
+}
+.fd-course {
+  width: 100%;
+  height: auto;
+  overflow: visible;
+  margin-bottom: 28px;
+}
+.fd-path {
+  fill: none;
+  stroke: var(--ink);
+  stroke-opacity: 0.2;
+  stroke-width: 1;
+  stroke-dasharray: 4 6;
+  vector-effect: non-scaling-stroke;
+}
+.fd-trail {
+  fill: none;
+  stroke: var(--rust);
+  stroke-width: 1.4;
+}
+.fd-wp {
+  fill: var(--paper);
+  stroke: var(--rust);
+  stroke-width: 1.5;
+  vector-effect: non-scaling-stroke;
+}
+.fd-boat path {
+  fill: var(--lake);
+}
+.fd-boat .sail {
+  fill: var(--paper);
+  stroke: var(--lake);
+  stroke-width: 1.2;
+}
+.fd-stops {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line);
+}
+.fd-stop a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 26px 24px 30px 0;
+  margin-right: 24px;
+  border-right: 1px solid var(--line);
+  transition: background 0.5s;
+}
+.fd-stop:last-child a {
+  border-right: 0;
+  margin-right: 0;
+}
+.fd-stop + .fd-stop a {
+  padding-left: 0;
+}
+.fd-n {
+  color: var(--ink-soft);
+  font-size: 10.5px;
+}
+.fd-price {
+  font-size: clamp(56px, 6vw, 96px);
+  margin: 18px 0 10px;
+  color: var(--lake);
+  transition: color 0.4s, transform 0.8s var(--ease-out);
+  transform-origin: left bottom;
+}
+.fd-price.is-paid {
+  font-size: clamp(44px, 4.6vw, 76px);
+}
+.fd-stop a:hover .fd-price {
+  color: var(--rust);
+  transform: translateY(-4px) rotate(-1.5deg);
+}
+.fd-when {
+  color: var(--rust);
+  font-size: 11px;
+}
+.fd-title {
+  font-family: var(--serif);
+  font-size: 26px;
+  margin: 18px 0 8px;
+  font-variation-settings: 'SOFT' 60;
+}
+.fd-body {
+  color: var(--ink-soft);
+  font-size: 15.5px;
+  margin-bottom: 18px;
+}
+.fd-more {
+  margin-top: auto;
+  align-self: flex-start;
+  font-weight: 600;
+  font-size: 14px;
+}
+@media (max-width: 900px) {
+  .fd-stops {
+    grid-template-columns: 1fr 1fr;
+  }
+  .fd-stop a {
+    border-right: 0;
+    margin-right: 16px;
+    border-bottom: 1px solid var(--line);
+  }
+}
+@media (max-width: 560px) {
+  .fd-stops {
+    grid-template-columns: 1fr;
+  }
+}

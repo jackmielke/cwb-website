@@ -6,18 +6,18 @@ import { memberships } from '../data'
 export default function Join() {
   return (
     <Layout overlay>
-      <PageHero eyebrow="Join the crew" image={img('youth-paddle.jpg')} title={<>Fifty seasons in. <span className="display-i text-brass">Climb aboard.</span></>} intro="More than half of what it takes to run CWB comes from people who love it. Become a member, give an afternoon a week, or make a gift to keep the museum free for the next fifty years.">
+      <PageHero eyebrow="Join" image={img('youth-paddle.jpg')} title="Membership and giving" intro="More than half of what it takes to run CWB comes from members and donors. Become a member, give an afternoon a week, or make a gift to keep the museum free for the next fifty years.">
         <div className="flex flex-wrap gap-3"><Btn href="#members" variant="paper">Membership</Btn><Btn href="#volunteer" variant="ghost-light">Volunteer</Btn><Btn href="#give" variant="ghost-light">Give</Btn></div>
       </PageHero>
 
       <Section className="py-24" id="members">
         <div className="grid lg:grid-cols-12 gap-10 items-end reveal">
-          <div className="lg:col-span-7"><Eyebrow className="text-rust">Membership</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Sail for less. <span className="display-i text-rust">Belong for good.</span></h2></div>
+          <div className="lg:col-span-7"><Eyebrow className="text-rust">Membership</Eyebrow><h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Membership levels</h2></div>
           <p className="lg:col-span-5 text-lg text-ink-3">Every member gets up to 25% off rentals, up to 20% off classes, the monthly newsletter, member events, and the right to buy a Livery Season Pass.</p>
         </div>
         <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {memberships.map((m) => (
-            <div key={m.name} className={`relative rounded-[28px] p-8 flex flex-col reveal ${m.featured ? 'bg-ink text-paper' : 'bg-paper-2'}`}>
+            <div key={m.name} className={`relative rounded-md p-8 flex flex-col reveal ${m.featured ? 'bg-ink text-paper' : 'bg-paper-2'}`}>
               {m.featured && <span className="absolute top-6 right-6 rounded-full bg-brass text-ink px-3 py-1 text-xs font-semibold">Most popular</span>}
               <p className={`eyebrow ${m.featured ? 'text-paper/60' : 'text-ink-3'}`}>{m.kind}</p>
               <p className="display text-4xl mt-3">{m.name}</p>
@@ -34,7 +34,7 @@ export default function Join() {
         <div className="mx-auto max-w-site px-5 md:px-10 grid lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-6 reveal">
             <Eyebrow className="text-brass">Volunteer · since 1977</Eyebrow>
-            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">400 people keep this place <span className="display-i text-brass">afloat.</span></h2>
+            <h2 className="display text-[44px] md:text-[64px] leading-[.98] mt-5">Volunteer</h2>
             <p className="mt-6 text-lg text-paper/75 leading-relaxed">Skipper Public Sail, staff the livery, build toy boats with kids, repair sails, or work in the boatshop. Orientations run the second Saturday of every month. Ages 16 and up.</p>
             <div className="mt-8 grid grid-cols-2 gap-6 max-w-md">
               <div className="border-t border-paper/15 pt-4"><p className="display text-5xl text-brass">1 : 3</p><p className="mt-2 text-sm text-paper/60">One hour of boat use for every three volunteered</p></div>
@@ -42,7 +42,7 @@ export default function Join() {
             </div>
             <div className="mt-10"><Btn href="https://www.cwb.org/volunteer" variant="paper">Apply to volunteer</Btn></div>
           </div>
-          <div className="lg:col-span-5 lg:col-start-8 reveal"><img src={img('boatbuilder-planing.jpg')} alt="A volunteer planing a wooden hull in the boatshop" className="rounded-[28px] w-full aspect-[4/5] object-cover" /></div>
+          <div className="lg:col-span-5 lg:col-start-8 reveal"><img src={img('boatbuilder-planing.jpg')} alt="A volunteer planing a wooden hull in the boatshop" className="rounded-md w-full aspect-[4/5] object-cover" /></div>
         </div>
       </section>
 
@@ -63,7 +63,7 @@ export default function Join() {
               ['In memory or honor', 'Note a name with your online gift.'],
               ['Navigator Club', 'Leave a legacy gift in your will.'],
               ['Sponsorship', 'Put your company on the water. development@cwb.org'],
-            ].map(([t, d]) => <div key={t} className="rounded-2xl bg-paper-2 p-6 reveal"><p className="display text-2xl">{t}</p><p className="mt-2 text-sm text-ink-3">{d}</p></div>)}
+            ].map(([t, d]) => <div key={t} className="rounded-md bg-paper-2 p-6 reveal"><p className="display text-2xl">{t}</p><p className="mt-2 text-sm text-ink-3">{d}</p></div>)}
           </div>
         </div>
       </Section>

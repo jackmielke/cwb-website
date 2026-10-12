@@ -1,0 +1,249 @@
+.fleet {
+  position: relative;
+  background: var(--paper-2);
+  overflow: hidden;
+}
+.fleet-track {
+  display: flex;
+  align-items: stretch;
+  gap: 20px;
+  height: 100vh;
+  padding: 120px var(--gutter) 70px;
+  width: max-content;
+  will-change: transform;
+}
+.fleet-intro {
+  width: min(520px, 80vw);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding-right: 4vw;
+}
+.fleet-intro .eyebrow {
+  color: var(--rust);
+}
+.fleet-intro h2 {
+  margin: 20px 0 24px;
+  font-size: clamp(56px, 7vw, 120px);
+}
+.fleet-intro h2 em {
+  color: var(--rust);
+}
+.fleet-intro p {
+  max-width: 34ch;
+  color: var(--ink-soft);
+  margin: 0;
+}
+.fleet-scrollhint {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 40px;
+}
+.fleet-scrollhint svg {
+  width: 40px;
+  height: 10px;
+  animation: nudge 1.8s var(--ease-water) infinite;
+}
+@keyframes nudge {
+  50% { transform: translateX(8px); }
+}
+
+.boat-card {
+  width: clamp(320px, 30vw, 440px);
+  flex: none;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: transform 0.8s var(--ease-out), box-shadow 0.8s var(--ease-out), border-color 0.4s;
+}
+.boat-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 60px -30px rgba(13, 34, 48, 0.35);
+  border-color: rgba(180, 83, 42, 0.5);
+}
+.boat-link {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 22px 24px 22px;
+}
+.boat-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  color: var(--ink-soft);
+}
+.boat-head .eyebrow {
+  font-size: 10.5px;
+}
+.boat-figure {
+  position: relative;
+  margin: 10px -24px 4px;
+  flex: 1;
+  min-height: 150px;
+  max-height: 300px;
+  color: var(--lake);
+  overflow: hidden;
+}
+.boat-bob {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+}
+.boat-bob svg {
+  width: 100%;
+  height: 100%;
+}
+.boat-card:hover .boat-bob {
+  animation: bob 3.2s ease-in-out infinite;
+}
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  30% { transform: translateY(2px) rotate(0.8deg); }
+  70% { transform: translateY(-2px) rotate(-0.6deg); }
+}
+.boat-card:hover .bd-lines path {
+  stroke-dasharray: 1;
+  animation: redraw 1.4s calc(var(--i) * 0.08s) var(--ease-water) both;
+}
+@keyframes redraw {
+  from { stroke-dashoffset: 1; }
+  to { stroke-dashoffset: 0; }
+}
+/* water fills to the design waterline (y=150 of 220) on hover */
+.boat-water {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: calc(70 / 220 * 100%);
+  background: linear-gradient(to bottom, rgba(29, 69, 86, 0.18), rgba(29, 69, 86, 0.05));
+  transform: translateY(100%);
+  transition: transform 1s var(--ease-water);
+}
+.boat-water::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: -6px;
+  width: 200%;
+  height: 6px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='40' height='6'><path d='M0 6 V3 Q10 0 20 3 T40 3 V6Z' fill='%231d4556' fill-opacity='0.18'/></svg>") repeat-x 0 0 / 40px 6px;
+  animation: wbtn-wave 2s linear infinite;
+}
+.boat-card:hover .boat-water {
+  transform: translateY(0);
+}
+.boat-card h3 {
+  margin: 8px 0 10px;
+  font-size: clamp(34px, 3vw, 48px);
+}
+.boat-note {
+  margin: 0 0 18px;
+  font-size: 15px;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+.boat-spec {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  margin: 0 0 18px;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+}
+.boat-spec div {
+  padding: 10px 10px 10px 0;
+}
+.boat-spec div + div {
+  padding-left: 10px;
+  border-left: 1px solid var(--line);
+}
+.boat-spec dt {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  opacity: 0.8;
+}
+.boat-spec dd {
+  margin: 3px 0 0;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.3;
+}
+.boat-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+  font-size: 14px;
+}
+.boat-rate {
+  font-family: var(--mono);
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--rust);
+}
+.boat-cta {
+  font-weight: 600;
+  white-space: nowrap;
+}
+.fleet-end {
+  width: min(420px, 80vw);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 4vw 20px 2vw;
+}
+.fleet-end p {
+  margin: 0;
+  font-size: clamp(22px, 2vw, 30px);
+  line-height: 1.2;
+  color: var(--ink-soft);
+}
+.fleet-progress {
+  position: absolute;
+  left: var(--gutter);
+  right: var(--gutter);
+  bottom: 32px;
+  height: 1px;
+  background: var(--line);
+}
+.fleet-progress i {
+  position: absolute;
+  inset: 0;
+  background: var(--rust);
+  transform-origin: left;
+  transform: scaleX(0);
+}
+@media (max-width: 899px) {
+  .fleet-track {
+    height: auto;
+    width: auto;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    padding: 100px var(--gutter) 70px;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+  .fleet-track::-webkit-scrollbar {
+    display: none;
+  }
+  .boat-card,
+  .fleet-intro {
+    scroll-snap-align: start;
+  }
+  .boat-card {
+    width: 82vw;
+    min-height: 600px;
+  }
+  .fleet-progress {
+    display: none;
+  }
+  .fleet-intro {
+    flex: none;
+  }
+}
