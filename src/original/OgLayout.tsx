@@ -39,6 +39,7 @@ export function OgHeader({ overlay }: { overlay: boolean }) {
             <div className="flex gap-x-[2.1vw]">{row1.map((g) => <Item key={g.label} g={g} />)}</div>
             <div className="flex gap-x-[2.1vw]">{row2.map((g) => <Item key={g.label} g={g} />)}</div>
           </nav>
+          <Link to={`${O}/facility-rentals`} state={{ inquire: true }} className="mt-1 inline-block border-2 border-[#AD4E25] bg-[#AD4E25] text-white px-4 py-2 text-[10px] font-semibold uppercase tracking-[.15em] hover:opacity-85">Event Rentals</Link>
           <a href="https://www.cwb.org/give" className={`mt-1 inline-block border-2 ${overlay ? 'border-white' : 'border-[#2b2b2b]'} px-4 py-2 text-[10px] font-semibold uppercase tracking-[.15em] hover:opacity-70`}>Donate</a>
           <button aria-label="Search" className="mt-2"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4"><circle cx="10" cy="10" r="7" /><path d="M15.5 15.5 22 22" /></svg></button>
         </div>
@@ -54,6 +55,7 @@ export function OgHeader({ overlay }: { overlay: boolean }) {
               {g.items.map((i) => <Link key={i.slug} to={`${O}/${i.slug}`} className="block pl-3 py-1 text-sm">{i.label}</Link>)}
             </div>
           ))}
+          <Link to={`${O}/facility-rentals`} state={{ inquire: true }} className="mt-3 mr-3 inline-block border-2 border-[#AD4E25] bg-[#AD4E25] text-white px-4 py-2 text-xs font-semibold uppercase tracking-[.15em]">Event Rentals</Link>
           <a href="https://www.cwb.org/give" className="mt-3 inline-block border-2 border-[#2b2b2b] px-4 py-2 text-xs font-semibold uppercase tracking-[.15em]">Donate</a>
         </div>
       )}
